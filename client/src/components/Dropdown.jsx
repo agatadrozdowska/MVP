@@ -4,7 +4,7 @@ import ListItem from "./ListItem.jsx";
 
 function Dropdown(props) {
   return (
-    <ul>
+    <ul className="dropdown">
       {props.options.map((option, index) => {
         return (
           <ListItem

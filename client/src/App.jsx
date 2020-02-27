@@ -42,15 +42,16 @@ class App extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     axios
-      .get("/searchCity", { params: { city: this.state.currentCity } })
+      .get("/searchCity", { params: { href: this.state.href } })
       .then(data => {
-        this.setState({ data: data.data });
+        this.setState({ data: data.data, options: [] });
       });
   }
 
   handleListItemClick(option) {
-    this.setState({ href: option });
-    //console.log("hello");
+    this.setState({ href: option[1], currentCity: option[0] }, () => {
+      this.handleSubmit(event);
+    });
   }
 
   render() {
@@ -62,6 +63,7 @@ class App extends React.Component {
             <SearchBar
               handleInputChange={this.handleInputChange}
               handleSubmit={this.handleSubmit}
+              currentCity={this.state.currentCity}
             />
             <Dropdown
               options={this.state.options}
