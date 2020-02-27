@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import SearchBar from "./components/SearchBar.jsx";
-import Scores from "./components/Scores.jsx";
+import Bar from "./components/Scores.jsx";
 import Dropdown from "./components/Dropdown.jsx";
+import BarChart from "./components/Scores.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class App extends React.Component {
     this.state = {
       currentCity: "",
       data: [],
+      labels: [],
       options: [],
       href: ""
     };
@@ -44,7 +46,13 @@ class App extends React.Component {
     axios
       .get("/searchCity", { params: { href: this.state.href } })
       .then(data => {
-        this.setState({ data: data.data, options: [] });
+        const dataArray = [];
+        const labelsArray = [];
+        data.data.forEach(obj => {
+          dataArray.push(obj["score_out_of_10"]);
+          labelsArray.push(obj.name);
+        });
+        this.setState({ data: dataArray, labels: labelsArray, options: [] });
       });
   }
 
@@ -69,7 +77,7 @@ class App extends React.Component {
               options={this.state.options}
               handleClick={this.handleListItemClick}
             />
-            <Scores data={this.state.data} />
+            <BarChart data={this.state.data} labels={this.state.labels} />
           </div>
         </div>
       </div>
