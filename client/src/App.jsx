@@ -9,22 +9,25 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCity: "",
-      data: [],
-      labels: [],
-      options: [],
+      firstCurrentCity: "",
+      firstCityData: [],
+      firstCityOptions: [],
       href: ""
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleListItemClick = this.handleListItemClick.bind(this);
+    this.handleInputChangeFirstCity = this.handleInputChangeFirstCity.bind(
+      this
+    );
+    this.handleSubmitFirstCity = this.handleSubmitFirstCity.bind(this);
+    this.handleListItemClickFirstCity = this.handleListItemClickFirstCity.bind(
+      this
+    );
   }
 
-  handleInputChange(event) {
-    this.setState({ currentCity: event.target.value }, () => {
+  handleInputChangeFirstCity(event) {
+    this.setState({ firstCurrentCity: event.target.value }, () => {
       axios
         .get(
-          `https://api.teleport.org/api/cities/?search=${this.state.currentCity}`
+          `https://api.teleport.org/api/cities/?search=${this.state.firstCurrentCity}`
         )
         .then(data => {
           const searchResults = data.data._embedded["city:search-results"];
@@ -35,25 +38,25 @@ class App extends React.Component {
               item._links["city:item"].href
             ]);
           });
-          this.setState({ options: arrayOfResults });
+          this.setState({ firstCityOptions: arrayOfResults });
         });
     });
   }
 
-  handleSubmit(event) {
+  handleSubmitFirstCity(event) {
     event.preventDefault();
-    this.setState({ options: [] }, () => {
+    this.setState({ firstCityOptions: [] }, () => {
       axios
         .get("/searchCity", { params: { href: this.state.href } })
         .then(data => {
-          this.setState({ data: data.data });
+          this.setState({ firstCityData: data.data });
         });
     });
   }
 
-  handleListItemClick(option) {
-    this.setState({ href: option[1], currentCity: option[0] }, () => {
-      this.handleSubmit(event);
+  handleListItemClickFirstCity(option) {
+    this.setState({ href: option[1], firstCurrentCity: option[0] }, () => {
+      this.handleSubmitFirstCity(event);
     });
   }
 
@@ -64,15 +67,15 @@ class App extends React.Component {
         <div className="main-container">
           <div>
             <SearchBar
-              handleInputChange={this.handleInputChange}
-              handleSubmit={this.handleSubmit}
-              currentCity={this.state.currentCity}
+              handleInputChange={this.handleInputChangeFirstCity}
+              handleSubmit={this.handleSubmitFirstCity}
+              currentCity={this.state.firstCurrentCity}
             />
             <Dropdown
-              options={this.state.options}
-              handleClick={this.handleListItemClick}
+              options={this.state.firstCityOptions}
+              handleClick={this.handleListItemClickFirstCity}
             />
-            <Scores data={this.state.data} />
+            <Scores data={this.state.firstCityData} />
           </div>
         </div>
       </div>

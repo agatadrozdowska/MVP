@@ -14,4 +14,77 @@
 
 .dropdown {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: absolute;
+  background-color: #fff;
+}
+
+.score-container {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style-type: none;
+  justify-content: flex-start;
+  margin-top: 5px;
+}
+
+.score-name {
+  width: 160px;
+  margin: 0;
+}
+
+.score-number {
+  margin: 0;
+  width: 40px;
+  text-align: right;
+}
+
+.rating-bar {
+  height: 10px;
+  width: 50%;
+  border: 1px;
+  border-style: solid;
+}
+
+.rating-bar div {
+  height: 10px;
+  background-color: #32bbb4;
+}
+
+.rating-bar-fill-1 {
+  width: 10%;
+}
+
+.rating-bar-fill-2 {
+  width: 20%;
+}
+
+.rating-bar-fill-3 {
+  width: 30%;
+}
+
+.rating-bar-fill-4 {
+  width: 40%;
+}
+
+.rating-bar-fill-5 {
+  width: 50%;
+}
+
+.rating-bar-fill-6 {
+  width: 60%;
+}
+
+.rating-bar-fill-7 {
+  width: 70%;
+}
+
+.rating-bar-fill-8 {
+  width: 80%;
+}
+
+.rating-bar-fill-9 {
+  width: 90%;
+}
+
+.rating-bar-fill-10 {
+  width: 100%;
 }
