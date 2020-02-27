@@ -2,9 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import SearchBar from "./components/SearchBar.jsx";
-import Bar from "./components/Scores.jsx";
+import Scores from "./components/Scores.jsx";
 import Dropdown from "./components/Dropdown.jsx";
-import BarChart from "./components/Scores.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -43,17 +42,13 @@ class App extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios
-      .get("/searchCity", { params: { href: this.state.href } })
-      .then(data => {
-        const dataArray = [];
-        const labelsArray = [];
-        data.data.forEach(obj => {
-          dataArray.push(obj["score_out_of_10"]);
-          labelsArray.push(obj.name);
+    this.setState({ options: [] }, () => {
+      axios
+        .get("/searchCity", { params: { href: this.state.href } })
+        .then(data => {
+          this.setState({ data: data.data });
         });
-        this.setState({ data: dataArray, labels: labelsArray, options: [] });
-      });
+    });
   }
 
   handleListItemClick(option) {
@@ -77,7 +72,7 @@ class App extends React.Component {
               options={this.state.options}
               handleClick={this.handleListItemClick}
             />
-            <BarChart data={this.state.data} labels={this.state.labels} />
+            <Scores data={this.state.data} />
           </div>
         </div>
       </div>
