@@ -1,11 +1,30 @@
+body {
+  font-family: "Lato";
+}
+
+h2 {
+  padding-left: 40px;
+}
+
 .main-container {
   display: flex;
 }
 
+.left-container {
+  width: 50%;
+  padding-left: 40px;
+}
+
+.right-container {
+  width: 50%;
+}
+
 .searchbar {
-  width: 300px;
+  width: 410px;
   height: 30px;
   border-radius: 5px;
+  font-size: 1em;
+  opacity: 0.5;
 }
 
 .listItem {
@@ -16,6 +35,10 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: absolute;
   background-color: #fff;
+  width: 350px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 0px;
 }
 
 .score-container {
@@ -27,25 +50,28 @@
 }
 
 .score-name {
-  width: 160px;
+  width: 170px;
   margin: 0;
 }
 
 .score-number {
   margin: 0;
-  width: 40px;
+  margin-left: 5px;
+  width: auto;
   text-align: right;
 }
 
 .rating-bar {
-  height: 10px;
+  height: 15px;
   width: 50%;
   border: 1px;
   border-style: solid;
+  margin-top: 3px;
+  border-radius: 3px;
 }
 
 .rating-bar div {
-  height: 10px;
+  height: 15px;
   background-color: #32bbb4;
 }
 
@@ -87,4 +113,35 @@
 
 .rating-bar-fill-10 {
   width: 100%;
+}
+
+#red {
+  background-color: #c50b0b;
+}
+
+img {
+  max-width: 100%;
+  width: 73%;
+  border-radius: 5px;
+}
+
+.score-list {
+  padding-left: 0;
+}
+
+.total-score {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.span {
+  font-weight: bold;
+}
+
+.cityName {
+  font-size: 1.4em;
+  color: #1d736f;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
